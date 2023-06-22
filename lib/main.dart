@@ -37,8 +37,31 @@ void main() {
                       fontWeight: FontWeight.w700,
                       color: Colors.white,
                     ),
-                  )
+                  ),
                 ],
+              ),
+              const SizedBox(height: 20),
+              const Row(
+                children: [
+                  SizedBox(width: 28),
+                  Text(
+                    "Everything start from here",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 40),
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 28),
+                height: 50,
+                decoration: BoxDecoration(
+                  color: const Color(0xFFFFCA42),
+                  borderRadius: BorderRadius.circular(100),
+                ),
               )
             ],
           ),
