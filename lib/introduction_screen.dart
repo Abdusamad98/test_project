@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:test_project/login_screen.dart';
 
 class IntroductionScreen extends StatelessWidget {
   const IntroductionScreen({super.key});
@@ -65,19 +65,26 @@ class IntroductionScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 32),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 28),
-            height: 50,
-            decoration: BoxDecoration(
-              color: const Color(0xFFFFCA42),
-              borderRadius: BorderRadius.circular(100),
-            ),
-            child: const Center(
-              child: Text(
-                "LogIn",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return LoginScreen();
+              }));
+            },
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 28),
+              height: 50,
+              decoration: BoxDecoration(
+                color: const Color(0xFFFFCA42),
+                borderRadius: BorderRadius.circular(100),
+              ),
+              child: const Center(
+                child: Text(
+                  "LogIn",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ),
