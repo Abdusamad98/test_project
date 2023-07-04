@@ -7,6 +7,12 @@ class IntroductionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double w = MediaQuery.of(context).size.width;
+    double h = MediaQuery.of(context).size.height;
+
+    print("SCREEN WIDTH:$w");
+    print("SCREEN Height:$h");
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -17,8 +23,8 @@ class IntroductionScreen extends StatelessWidget {
         title: const Text("Spedah"),
       ),
       backgroundColor: const Color(0xFF1F5460),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: ListView(
+        // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Stack(
             children: [
