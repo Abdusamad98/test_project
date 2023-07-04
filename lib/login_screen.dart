@@ -7,95 +7,68 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {},
-          icon: Icon(Icons.arrow_back),
-          color: Colors.black,
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Color(0xFF1F5460),
+          ),
         ),
+        systemOverlayStyle:
+            const SystemUiOverlayStyle(statusBarColor: Colors.white),
         elevation: 0,
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: Colors.white,
-        ),
         backgroundColor: Colors.white,
+        title: Text(""),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 28),
+        padding: EdgeInsets.all(28),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 30),
             const Text(
               "Welcome back",
               style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 32,
-                  color: Color(0xFF1F5460)),
+                fontSize: 32,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF1F5460),
+              ),
             ),
             const SizedBox(height: 16),
             const Text(
               "Enter your credential to continue",
               style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                  color: Color(0xFF879EA4)),
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+                color: Color(0xFF879EA4),
+              ),
             ),
-            const SizedBox(height: 36),
+            const SizedBox(height: 30),
             TextField(
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.person),
                 hintText: "Email or username",
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(4),
-                  borderSide: const BorderSide(
-                    color: Colors.green,
-                    width: 2,
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(4),
-                  borderSide: const BorderSide(
-                    color: Colors.red,
-                    width: 2,
-                  ),
-                ),
-                disabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(4),
-                  borderSide: const BorderSide(
-                    color: Color(0xFF879EA4),
-                    width: 2,
-                  ),
-                ),
+                    borderSide: BorderSide(
+                        width: 2, color: Color(0xFF1F5460).withOpacity(0.2))),
+                focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(width: 2, color: Colors.teal)),
               ),
             ),
             const SizedBox(height: 24),
             TextField(
+              obscureText: true,
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.lock),
                 suffixIcon: const Icon(Icons.remove_red_eye),
                 hintText: "Password",
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(4),
-                  borderSide: const BorderSide(
-                    color: Colors.green,
-                    width: 2,
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(4),
-                  borderSide: const BorderSide(
-                    color: Colors.red,
-                    width: 2,
-                  ),
-                ),
-                disabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(4),
-                  borderSide: const BorderSide(
-                    color: Color(0xFF879EA4),
-                    width: 2,
-                  ),
-                ),
+                    borderSide: BorderSide(
+                        width: 2, color: Color(0xFF1F5460).withOpacity(0.2))),
+                focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(width: 2, color: Colors.teal)),
               ),
             ),
             const SizedBox(height: 16),
@@ -105,9 +78,10 @@ class LoginScreen extends StatelessWidget {
                 Text(
                   "Forgot password?",
                   style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12,
-                      color: Color(0xFF879EA4)),
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                    color: Color(0xFF1F5460),
+                  ),
                 ),
               ],
             ),
@@ -129,68 +103,74 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            _getMyButton(
+            getButtonWidget(
               "Log in using Apple",
               "assets/images/apple.png",
               Colors.black,
               Colors.white,
+              () {
+                print("1 BUTTON TAPPED");
+              },
             ),
             const SizedBox(height: 16),
-            _getMyButton(
+            getButtonWidget(
               "Log in using Google",
               "assets/images/google.png",
-              const Color(0xFFF0F5F2),
-              const Color(0xFF10405A),
+              Color(0xFFF0F5F2),
+              Color(0xFF10405A),
+              () {
+                print("2 BUTTON TAPPED");
+              },
             ),
-            Expanded(child: SizedBox()),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Don’t have account? Sign up",
-                  style: TextStyle(
-                    color: Color(0xFF1F5460),
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14,
-                  ),
-                )
-              ],
-            ),
-            const SizedBox(height: 16),
+            const Expanded(child: SizedBox()),
+            const Center(
+              child: Text(
+                "Don’t have account? Sign up",
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF1F5460),
+                ),
+              ),
+            )
           ],
         ),
       ),
     );
   }
 
-  Widget _getMyButton(
+  getButtonWidget(
     String buttonText,
-    String imagePath,
+    String iconPath,
     Color buttonColor,
     Color textColor,
+    VoidCallback onTap,
   ) {
-    return Container(
-      height: 50,
-      decoration: BoxDecoration(
-          color: buttonColor, borderRadius: BorderRadius.circular(100)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            imagePath,
-            width: 23,
-            height: 23,
-          ),
-          const SizedBox(width: 10),
-          Text(
-            buttonText,
-            style: TextStyle(
-              color: textColor,
-              fontWeight: FontWeight.w600,
-              fontSize: 16,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 50,
+        decoration: BoxDecoration(
+            color: buttonColor, borderRadius: BorderRadius.circular(100)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              iconPath,
+              width: 23,
+              height: 23,
             ),
-          ),
-        ],
+            const SizedBox(width: 10),
+            Text(
+              buttonText,
+              style: TextStyle(
+                color: textColor,
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
