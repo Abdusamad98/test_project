@@ -6,6 +6,6 @@ import 'package:test_project/login_screen.dart';
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: LoginScreen(),//IntroductionScreen(),
+    home:IntroductionScreen(),
   ));
 }
