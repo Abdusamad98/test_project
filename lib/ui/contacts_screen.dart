@@ -13,7 +13,7 @@ class ContactsScreen extends StatefulWidget {
 
 class _ContactsScreenState extends State<ContactsScreen> {
   List<ContactModel> contacts = [
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i < 5; i++)
       ContactModel(
         contactName: "Abdulloh $i",
         contactPhone: "+9989 123 45 67",
@@ -80,7 +80,13 @@ class _ContactsScreenState extends State<ContactsScreen> {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return AddContactScreen();
+                return AddContactScreen(
+                  onNewContact: (newContact) {
+                    setState(() {
+                      contacts.add(newContact);
+                    });
+                  },
+                );
               },
             ),
           );
