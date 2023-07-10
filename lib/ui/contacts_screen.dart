@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:test_project/models/contact_model.dart';
+import 'package:test_project/ui/add_contact_screen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactsScreen extends StatefulWidget {
   const ContactsScreen({super.key});
@@ -59,7 +61,11 @@ class _ContactsScreenState extends State<ContactsScreen> {
               size: 50,
             ),
             trailing: IconButton(
-              onPressed: () {},
+              onPressed: () async {
+                await launchUrl(
+                  Uri.parse("tel:${contacts[index].contactPhone}"),
+                );
+              },
               icon: const Icon(
                 Icons.call,
                 color: Colors.green,
@@ -69,7 +75,16 @@ class _ContactsScreenState extends State<ContactsScreen> {
         }),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return AddContactScreen();
+              },
+            ),
+          );
+        },
         child: const Icon(Icons.add),
       ),
     );
