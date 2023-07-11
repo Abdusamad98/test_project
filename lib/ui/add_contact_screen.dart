@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:test_project/models/contact_model.dart';
 
 class AddContactScreen extends StatefulWidget {
-  const AddContactScreen({super.key});
+  const AddContactScreen({
+    super.key,
+    required this.onNewContact,
+  });
+
+  final ValueChanged<ContactModel> onNewContact;
 
   @override
   State<AddContactScreen> createState() => _AddContactScreenState();
 }
 
 class _AddContactScreenState extends State<AddContactScreen> {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController surnameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +33,29 @@ class _AddContactScreenState extends State<AddContactScreen> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            //+998991234567
+            onPressed: () {
+              if (nameController.text.length >= 2 &&
+                  surnameController.text.length >= 2 &&
+                  phoneController.text.length == 9) {
+                ContactModel newContact = ContactModel(
+                  contactPhone: "+998${phoneController.text}",
+                  contactName: nameController.text,
+                  contactSurname: surnameController.text,
+                );
+                //Sending to ContactsScreen from here
+                widget.onNewContact.call(newContact);
+
+                Navigator.pop(context);
+
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text("Enter valid data!!!"),
+                  ),
+                );
+              }
+            },
             icon: const Icon(
               Icons.done,
               color: Colors.black,
@@ -39,16 +71,16 @@ class _AddContactScreenState extends State<AddContactScreen> {
       body: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: [
             const Text(
               "Name",
               style: TextStyle(fontSize: 16, color: Colors.black),
             ),
             const SizedBox(height: 5),
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              controller: nameController,
+              decoration: const InputDecoration(
                 hintText: "Enter name",
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
@@ -70,8 +102,9 @@ class _AddContactScreenState extends State<AddContactScreen> {
               style: TextStyle(fontSize: 16, color: Colors.black),
             ),
             const SizedBox(height: 5),
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              controller: surnameController,
+              decoration: const InputDecoration(
                 hintText: "Enter surname",
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
@@ -94,6 +127,7 @@ class _AddContactScreenState extends State<AddContactScreen> {
             ),
             const SizedBox(height: 5),
             TextField(
+              controller: phoneController,
               keyboardType: TextInputType.phone,
               decoration: InputDecoration(
                 hintText: "_ _  _ _ _  _ _  _ _",
