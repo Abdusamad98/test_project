@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:test_project/ui/add_contact_screen.dart';
+import 'package:test_project/ui/contact_detail_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../model/contact_model.dart';
@@ -12,13 +14,7 @@ class ContactsScreen extends StatefulWidget {
 }
 
 class _ContactsScreenState extends State<ContactsScreen> {
-  List<ContactModel> contacts = [
-    for (int i = 0; i < 100; i++)
-      ContactModel(
-        contactPhone: "+998991234567",
-        contactName: "Abdulloh$i",
-      ),
-  ];
+  List<ContactModel> contacts = [];
 
   @override
   Widget build(BuildContext context) {
@@ -46,11 +42,23 @@ class _ContactsScreenState extends State<ContactsScreen> {
           ),
         ],
       ),
-      body: ListView(
+      body: contacts.isNotEmpty
+          ? ListView(
         children: [
-          for (int i = 0; i < 100; i++)
+          for (int i = 0; i < contacts.length; i++)
             ListTile(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return ContactDetailScreen(
+                        contactModel: contacts[i],
+                      );
+                    },
+                  ),
+                );
+              },
               title: Text(contacts[i].contactName),
               subtitle: Text(contacts[i].contactPhone),
               trailing: IconButton(
@@ -69,6 +77,22 @@ class _ContactsScreenState extends State<ContactsScreen> {
               ),
             ),
         ],
+      )
+          : Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset("assets/images/empty_box.svg"),
+            const SizedBox(height: 20),
+            const Text(
+              "You have no contacts yet",
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.grey,
+              ),
+            )
+          ],
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
@@ -77,12 +101,16 @@ class _ContactsScreenState extends State<ContactsScreen> {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return ContactAddScreen();
+                return ContactAddScreen(
+                  onNewContact: (newContact) {
+                    setState(() {
+                      contacts.add(newContact);
+                    });
+                  },
+                );
               },
             ),
           );
-
-
         },
         child: const Icon(
           Icons.add,
