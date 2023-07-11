@@ -13,8 +13,8 @@ class _ContactsScreenState extends State<ContactsScreen> {
   List<ContactModel> contacts = [
     for (int i = 0; i < 100; i++)
       ContactModel(
-        contactPhone: "+998991234567",
         contactName: "Abdulloh",
+        contactPhone: "+998991234567",
         contactSurname: "Falonchiyev",
       ),
   ];

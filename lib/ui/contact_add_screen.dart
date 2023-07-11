@@ -28,12 +28,68 @@ class _ContactAddScreenState extends State<ContactAddScreen> {
         ),
         actions: [
           IconButton(
-            onPressed: () {
-
-            },
+            onPressed: () {},
             icon: const Icon(
               Icons.done,
               color: Colors.black,
+            ),
+          ),
+        ],
+      ),
+      body: ListView(
+        padding: EdgeInsets.all(15),
+        children: const [
+          Text(
+            "Name",
+            style: TextStyle(fontSize: 16, color: Colors.black),
+          ),
+          const SizedBox(height: 5),
+          TextField(
+            decoration: InputDecoration(
+              hintText: "Enter name",
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey, width: 1.5)),
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.green, width: 1.5)),
+            ),
+          ),
+          const SizedBox(height: 20),
+          Text(
+            "Surname",
+            style: TextStyle(fontSize: 16, color: Colors.black),
+          ),
+          const SizedBox(height: 5),
+          TextField(
+            decoration: InputDecoration(
+              hintText: "Enter surname",
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey, width: 1.5)),
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.green, width: 1.5)),
+            ),
+          ),
+          const SizedBox(height: 20),
+          Text(
+            "Phone",
+            style: TextStyle(fontSize: 16, color: Colors.black),
+          ),
+          const SizedBox(height: 5),
+          TextField(
+            decoration: InputDecoration(
+              prefixIcon: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16, horizontal: 10),
+                  child: Text(
+                    "+998",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey,
+                    ),
+                  )),
+              hintText: "_ _  _ _ _  _ _  _ _",
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey, width: 1.5)),
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.green, width: 1.5)),
             ),
           ),
         ],
