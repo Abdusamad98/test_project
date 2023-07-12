@@ -1,24 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:test_project/local/db.dart';
 import 'package:test_project/models/contact_model.dart';
-import 'package:test_project/models/contact_model_sql.dart';
 
-class AddContactScreen extends StatefulWidget {
-  const AddContactScreen({
+class UpdateContactScreen extends StatefulWidget {
+  const UpdateContactScreen({
     super.key,
     required this.onNewContact,
+    required this.contactModel,
   });
 
   final ValueChanged<ContactModel> onNewContact;
+  final ContactModel contactModel;
 
   @override
-  State<AddContactScreen> createState() => _AddContactScreenState();
+  State<UpdateContactScreen> createState() => _UpdateContactScreenState();
 }
 
-class _AddContactScreenState extends State<AddContactScreen> {
+class _UpdateContactScreenState extends State<UpdateContactScreen> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController surnameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
+
+
+  @override
+  void initState() {
+    nameController.text  = widget.contactModel.contactName;
+    surnameController.text  = widget.contactModel.contactSurname;
+    phoneController.text  = widget.contactModel.contactPhone.substring(4,widget.contactModel.contactPhone.length);
+    super.initState();
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +56,6 @@ class _AddContactScreenState extends State<AddContactScreen> {
                   contactName: nameController.text,
                   contactSurname: surnameController.text,
                 );
-                LocalDatabase.insertContact(ContactModelSql(
-                  phone: phoneController.text,
-                  name: nameController.text,
-                ));
                 //Sending to ContactsScreen from here
                 widget.onNewContact.call(newContact);
 
@@ -69,7 +76,7 @@ class _AddContactScreenState extends State<AddContactScreen> {
         ],
         backgroundColor: Colors.white,
         title: const Text(
-          "Add",
+          "Update",
           style: TextStyle(color: Colors.black),
         ),
       ),

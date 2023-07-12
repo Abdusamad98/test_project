@@ -9,3 +9,4 @@ class ContactModel {
     required this.contactSurname,
   });
 }
+

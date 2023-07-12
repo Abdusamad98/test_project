@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:test_project/local/db.dart';
 import 'package:test_project/models/contact_model.dart';
+import 'package:test_project/models/contact_model_sql.dart';
 import 'package:test_project/ui/add_contact_screen.dart';
 import 'package:test_project/ui/contact_detail_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -13,13 +15,28 @@ class ContactsScreen extends StatefulWidget {
 }
 
 class _ContactsScreenState extends State<ContactsScreen> {
-  List<ContactModel> contacts = [
-    ContactModel(
-      contactPhone: "+998991234567",
-      contactName: "Abdulloh",
-      contactSurname: "Falonchiyev",
-    )
-  ];
+  List<ContactModel> contacts = [];
+
+  readContactsFromDB() async {
+    contacts = [];
+    List<ContactModelSql> dbContacts = await LocalDatabase.getAllContacts();
+    for (var value in dbContacts) {
+      contacts.add(
+        ContactModel(
+          contactPhone: value.phone,
+          contactName: value.name,
+          contactSurname: "TEST",
+        ),
+      );
+    }
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    readContactsFromDB();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,9 +121,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
               builder: (context) {
                 return AddContactScreen(
                   onNewContact: (newContact) {
-                    setState(() {
-                      contacts.add(newContact);
-                    });
+                    readContactsFromDB();
                   },
                 );
               },

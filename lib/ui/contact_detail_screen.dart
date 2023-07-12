@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_project/models/contact_model.dart';
+import 'package:test_project/ui/update_contact_screen.dart';
 
 class ContactDetailScreen extends StatefulWidget {
   const ContactDetailScreen({super.key, required this.contactModel});
@@ -70,7 +71,18 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return UpdateContactScreen(
+                              onNewContact: (newContact) {},
+                              contactModel: widget.contactModel);
+                        },
+                      ),
+                    );
+                  },
                   icon: const Icon(
                     Icons.edit,
                     color: Colors.black,
@@ -106,7 +118,9 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                     ),
                   ),
                 ),
-               const SizedBox(width: 15,),
+                const SizedBox(
+                  width: 15,
+                ),
                 Container(
                   height: 40,
                   width: 40,
