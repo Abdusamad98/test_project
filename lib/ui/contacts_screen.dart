@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_project/model/contact_model.dart';
 import 'package:test_project/ui/contact_add_screen.dart';
+import 'package:test_project/ui/contact_detail_screen.dart';
 
 class ContactsScreen extends StatefulWidget {
   const ContactsScreen({super.key});
@@ -11,12 +12,11 @@ class ContactsScreen extends StatefulWidget {
 
 class _ContactsScreenState extends State<ContactsScreen> {
   List<ContactModel> contacts = [
-    for (int i = 0; i < 100; i++)
-      ContactModel(
-        contactName: "Abdulloh",
-        contactPhone: "+998991234567",
-        contactSurname: "Falonchiyev",
-      ),
+    ContactModel(
+      contactName: "Abdulloh",
+      contactPhone: "+998991234567",
+      contactSurname: "Falonchiyev",
+    ),
   ];
 
   @override
@@ -51,7 +51,18 @@ class _ContactsScreenState extends State<ContactsScreen> {
         children: [
           for (int i = 0; i < contacts.length; i++)
             ListTile(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return ContactDetailScreen(
+                        contactModel: contacts[i],
+                      );
+                    },
+                  ),
+                );
+              },
               title: Text(contacts[i].contactName),
               subtitle: Text(contacts[i].contactPhone),
               trailing: IconButton(
@@ -76,7 +87,13 @@ class _ContactsScreenState extends State<ContactsScreen> {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return ContactAddScreen();
+                return ContactAddScreen(
+                  onNewContact: (newContact) {
+                    setState(() {
+                      contacts.add(newContact);
+                    });
+                  },
+                );
               },
             ),
           );

@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:test_project/model/contact_model.dart';
 
 class ContactAddScreen extends StatefulWidget {
-  const ContactAddScreen({super.key});
+  const ContactAddScreen({super.key, required this.onNewContact});
+
+  final ValueChanged<ContactModel> onNewContact;
 
   @override
   State<ContactAddScreen> createState() => _ContactAddScreenState();
 }
 
 class _ContactAddScreenState extends State<ContactAddScreen> {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController surnameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +35,27 @@ class _ContactAddScreenState extends State<ContactAddScreen> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              String name = nameController.text;
+              String surname = surnameController.text;
+              String phone = phoneController.text;
+//991234567
+              if (name.isNotEmpty && surname.isNotEmpty && phone.length == 9) {
+                ContactModel newContact = ContactModel(
+                  contactPhone: "+998$phone",
+                  contactName: name,
+                  contactSurname: surname,
+                );
+
+                widget.onNewContact.call(newContact);
+
+                Navigator.pop(context);
+
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Input fileds not valid!!!")));
+              }
+            },
             icon: const Icon(
               Icons.done,
               color: Colors.black,
@@ -38,14 +65,15 @@ class _ContactAddScreenState extends State<ContactAddScreen> {
       ),
       body: ListView(
         padding: EdgeInsets.all(15),
-        children: const [
-          Text(
+        children: [
+          const Text(
             "Name",
             style: TextStyle(fontSize: 16, color: Colors.black),
           ),
           const SizedBox(height: 5),
           TextField(
-            decoration: InputDecoration(
+            controller: nameController,
+            decoration: const InputDecoration(
               hintText: "Enter name",
               enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey, width: 1.5)),
@@ -54,13 +82,14 @@ class _ContactAddScreenState extends State<ContactAddScreen> {
             ),
           ),
           const SizedBox(height: 20),
-          Text(
+          const Text(
             "Surname",
             style: TextStyle(fontSize: 16, color: Colors.black),
           ),
           const SizedBox(height: 5),
           TextField(
-            decoration: InputDecoration(
+            controller: surnameController,
+            decoration: const InputDecoration(
               hintText: "Enter surname",
               enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey, width: 1.5)),
@@ -69,13 +98,14 @@ class _ContactAddScreenState extends State<ContactAddScreen> {
             ),
           ),
           const SizedBox(height: 20),
-          Text(
+          const Text(
             "Phone",
             style: TextStyle(fontSize: 16, color: Colors.black),
           ),
           const SizedBox(height: 5),
           TextField(
-            decoration: InputDecoration(
+            controller: phoneController,
+            decoration: const InputDecoration(
               prefixIcon: Padding(
                   padding: EdgeInsets.symmetric(vertical: 16, horizontal: 10),
                   child: Text(
