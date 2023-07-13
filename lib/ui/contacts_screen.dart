@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:test_project/models/contact_model.dart';
 import 'package:test_project/ui/add_contact_screen.dart';
+import 'package:test_project/ui/contact_detail_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactsScreen extends StatefulWidget {
@@ -13,12 +14,11 @@ class ContactsScreen extends StatefulWidget {
 
 class _ContactsScreenState extends State<ContactsScreen> {
   List<ContactModel> contacts = [
-    for (int i = 0; i < 5; i++)
-      ContactModel(
-        contactName: "Abdulloh $i",
-        contactPhone: "+9989 123 45 67",
-        contactSurname: "Falonchiyev$i",
-      ),
+    ContactModel(
+      contactName: "Abdulloh ",
+      contactPhone: "+9989 123 45 67",
+      contactSurname: "Falonchiyev",
+    ),
   ];
 
   @override
@@ -53,7 +53,19 @@ class _ContactsScreenState extends State<ContactsScreen> {
       body: ListView(
         children: List.generate(contacts.length, (index) {
           return ListTile(
-            onTap: () {},
+            onTap: () {
+              print("Hello");
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return ContactDetailScreen(
+                      contactModel: contacts[index],
+                    );
+                  },
+                ),
+              );
+            },
             title: Text(contacts[index].contactName),
             subtitle: Text(contacts[index].contactPhone),
             leading: const Icon(

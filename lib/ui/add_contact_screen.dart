@@ -42,11 +42,12 @@ class _AddContactScreenState extends State<AddContactScreen> {
 
               if (name.isNotEmpty) {
                 if (surname.isNotEmpty) {
-                  if (phone.length == 13) {
+                  //991234567
+                  if (phone.length == 9) {
                     print("CONTACT ADDABLE");
                     widget.onNewContact.call(ContactModel(
                       contactName: name,
-                      contactPhone: phone,
+                      contactPhone: "+998$phone",
                       contactSurname: surname,
                     ));
                     Navigator.pop(context);
@@ -148,7 +149,17 @@ class _AddContactScreenState extends State<AddContactScreen> {
             controller: phoneNumberController,
             keyboardType: TextInputType.phone,
             decoration: InputDecoration(
-              hintText: "+998 _ _  _ _ _  _ _  _ _",
+              prefixIcon: const Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: 16,
+                  horizontal: 10,
+                ),
+                child:  Text(
+                  "+998",
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+              hintText: " _ _  _ _ _  _ _  _ _",
               filled: true,
               fillColor: const Color(0xFFD9D9D9).withOpacity(0.3),
               enabledBorder: const OutlineInputBorder(
