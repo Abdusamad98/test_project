@@ -11,11 +11,11 @@ class ContactsScreen extends StatefulWidget {
 }
 
 class _ContactsScreenState extends State<ContactsScreen> {
+
   List<ContactModel> contacts = [
-    for (int i = 0; i < 100; i++)
       ContactModel(
         contactPhone: "+99890 974 94 62",
-        contactName: "Abdulloh${i + 1}",
+        contactName: "Abdulloh",
       )
   ];
 
@@ -49,7 +49,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
       ),
       body: ListView(
         children: [
-          for (int i = 0; i < 100; i++)
+          for (int i = 0; i < contacts.length; i++)
             ListTile(
               onTap: () {},
               trailing: IconButton(
@@ -93,7 +93,13 @@ class _ContactsScreenState extends State<ContactsScreen> {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return AddContactScreen();
+                return AddContactScreen(
+                  onNewContact: (newContact){
+                    setState(() {
+                      contacts.add(newContact);
+                    });
+                  },
+                );
               },
             ),
           );
