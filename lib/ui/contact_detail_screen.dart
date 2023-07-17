@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:test_project/models/contact_model.dart';
+import 'package:test_project/local_db/local_database.dart';
+import 'package:test_project/models/contact_model_sql.dart';
+import 'package:test_project/ui/update_contact_screen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactDetailScreen extends StatelessWidget {
   const ContactDetailScreen({
     super.key,
     required this.contactModel,
+    required this.syncMainPageListener,
   });
 
-  final ContactModel contactModel;
+  final ContactModelSql contactModel;
+  final VoidCallback syncMainPageListener;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading:  IconButton(
+        leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
           },
@@ -64,14 +69,29 @@ class ContactDetailScreen extends StatelessWidget {
                 child: Row(
                   children: [
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        await LocalDatabase.deleteContact(contactModel.id!);
+                        syncMainPageListener.call();
+                        Navigator.pop(context);
+                      },
                       icon: const Icon(
                         Icons.delete,
                         color: Colors.black,
                       ),
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return UpdateContactScreen(
+                            contactModelSql: contactModel,
+                            updatedListener: () {
+                              syncMainPageListener.call();
+                              Navigator.pop(context);
+                            },
+                          );
+                        }));
+                      },
                       icon: const Icon(
                         Icons.edit,
                         color: Colors.black,
@@ -84,7 +104,7 @@ class ContactDetailScreen extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Text(
-            contactModel.contactName + " " + contactModel.contactSurname,
+            contactModel.name,
             style: const TextStyle(
               fontSize: 22,
               color: Colors.black,
@@ -97,37 +117,49 @@ class ContactDetailScreen extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  contactModel.contactPhone,
+                  contactModel.phone,
                   style: const TextStyle(
                     fontSize: 18,
                     color: Colors.black,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-
                 Spacer(),
-
-                Container(
-                  height: 40,
-                  width: 40,
-                  decoration: const BoxDecoration(
-                      color: Colors.green, shape: BoxShape.circle),
-                  child: const Icon(
-                    Icons.call,
-                    color: Colors.white,
-                    size: 16,
+                GestureDetector(
+                  onTap: () async {
+                    await launchUrl(
+                      Uri.parse("tel:${contactModel.phone}"),
+                    );
+                  },
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: const BoxDecoration(
+                        color: Colors.green, shape: BoxShape.circle),
+                    child: const Icon(
+                      Icons.call,
+                      color: Colors.white,
+                      size: 16,
+                    ),
                   ),
                 ),
                 const SizedBox(width: 15),
-                Container(
-                  height: 40,
-                  width: 40,
-                  decoration: const BoxDecoration(
-                      color: Colors.orange, shape: BoxShape.circle),
-                  child: const Icon(
-                    Icons.message,
-                    color: Colors.white,
-                    size: 16,
+                GestureDetector(
+                  onTap: () async {
+                    await launchUrl(
+                      Uri.parse("sms:${contactModel.phone}"),
+                    );
+                  },
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: const BoxDecoration(
+                        color: Colors.orange, shape: BoxShape.circle),
+                    child: const Icon(
+                      Icons.message,
+                      color: Colors.white,
+                      size: 16,
+                    ),
                   ),
                 ),
               ],

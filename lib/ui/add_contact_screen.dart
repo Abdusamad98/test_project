@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:test_project/models/contact_model.dart';
+import 'package:test_project/models/contact_model_sql.dart';
 
 class AddContactScreen extends StatefulWidget {
   const AddContactScreen({super.key, required this.onNewContact});
 
-  final ValueChanged<ContactModel> onNewContact;
+  final ValueChanged<ContactModelSql> onNewContact;
 
   @override
   State<AddContactScreen> createState() => _AddContactScreenState();
@@ -45,10 +46,9 @@ class _AddContactScreenState extends State<AddContactScreen> {
                   //991234567
                   if (phone.length == 9) {
                     print("CONTACT ADDABLE");
-                    widget.onNewContact.call(ContactModel(
-                      contactName: name,
-                      contactPhone: "+998$phone",
-                      contactSurname: surname,
+                    widget.onNewContact.call(ContactModelSql(
+                      name: "$name $surname",
+                      phone: "+998$phone",
                     ));
                     Navigator.pop(context);
                   } else {
