@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:test_project/model/contact_model.dart';
+import 'package:test_project/local_db/local_database.dart';
+import 'package:test_project/model/contact_model_sql.dart';
+import 'package:test_project/ui/contact_update_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactDetailScreen extends StatefulWidget {
-  const ContactDetailScreen({super.key, required this.contactModel});
+  const ContactDetailScreen(
+      {super.key, required this.contactModel, required this.updateListener});
 
-  final ContactModel contactModel;
+  final ContactModelSql contactModel;
+  final VoidCallback updateListener;
 
   @override
   State<ContactDetailScreen> createState() => _ContactDetailScreenState();
@@ -66,14 +70,30 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        await LocalDatabase.deleteContact(
+                            widget.contactModel.id!);
+                        widget.updateListener.call();
+                        Navigator.pop(context);
+                      },
                       icon: const Icon(
                         Icons.delete,
                         color: Colors.black,
                       ),
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return ContactUpdateScreen(
+                            currentContact: widget.contactModel,
+                            contactUpdateListener: () {
+                              widget.updateListener.call();
+                              Navigator.pop(context);
+                            },
+                          );
+                        }));
+                      },
                       icon: const Icon(
                         Icons.edit,
                         color: Colors.black,
@@ -88,7 +108,7 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  widget.contactModel.contactPhone,
+                  widget.contactModel.name,
                   style: const TextStyle(
                     fontSize: 16,
                     color: Colors.black,
@@ -98,8 +118,7 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                 const Expanded(child: SizedBox()),
                 GestureDetector(
                   onTap: () async {
-                    launchUrl(
-                        Uri.parse("tel:${widget.contactModel.contactPhone}"));
+                    launchUrl(Uri.parse("tel:${widget.contactModel.phone}"));
                   },
                   child: Container(
                     width: 40,
@@ -122,7 +141,7 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                 ),
                 GestureDetector(
                   onTap: () async {
-                    launchUrl(Uri.parse("sms:${widget.contactModel.contactPhone}"));
+                    launchUrl(Uri.parse("sms:${widget.contactModel.phone}"));
                   },
                   child: Container(
                     width: 40,
