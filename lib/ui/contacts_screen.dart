@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:test_project/local_db/local_database.dart';
 import 'package:test_project/models/contact_model.dart';
+import 'package:test_project/models/contact_model_sql.dart';
 import 'package:test_project/ui/add_contact_screen.dart';
 import 'package:test_project/ui/contact_detail_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -13,12 +15,18 @@ class ContactsScreen extends StatefulWidget {
 }
 
 class _ContactsScreenState extends State<ContactsScreen> {
-  List<ContactModel> contacts = [
-    ContactModel(
-      contactPhone: "+99890 974 94 62",
-      contactName: "Abdulloh",
-    )
-  ];
+  List<ContactModelSql> contacts = [];
+
+  _init() async {
+    contacts = await LocalDatabase.getAllContacts();
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    _init();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +68,9 @@ class _ContactsScreenState extends State<ContactsScreen> {
                           builder: (context) {
                             return ContactDetailScreen(
                               contactModel: contacts[i],
+                              contactDeleteListener: () {
+                                _init();
+                              },
                             );
                           },
                         ),
@@ -67,8 +78,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
                     },
                     trailing: IconButton(
                       onPressed: () async {
-                        await launchUrl(
-                            Uri.parse("tel:${contacts[i].contactPhone}"));
+                        await launchUrl(Uri.parse("tel:${contacts[i].phone}"));
                       },
                       icon: const Icon(
                         Icons.call,
@@ -84,14 +94,14 @@ class _ContactsScreenState extends State<ContactsScreen> {
                       ),
                     ),
                     title: Text(
-                      contacts[i].contactName,
+                      contacts[i].name,
                       style: const TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w600,
                           fontSize: 16),
                     ),
                     subtitle: Text(
-                      contacts[i].contactPhone,
+                      contacts[i].phone,
                       style: const TextStyle(
                         color: Color(0xFF8B8B8B),
                         fontWeight: FontWeight.w500,
@@ -128,7 +138,8 @@ class _ContactsScreenState extends State<ContactsScreen> {
                 return AddContactScreen(
                   onNewContact: (newContact) {
                     setState(() {
-                      contacts.add(newContact);
+                      LocalDatabase.insertContact(newContact);
+                      _init();
                     });
                   },
                 );

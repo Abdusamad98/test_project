@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_project/models/contact_model.dart';
+import 'package:test_project/models/contact_model_sql.dart';
 
 class AddContactScreen extends StatefulWidget {
   const AddContactScreen({
@@ -7,7 +7,7 @@ class AddContactScreen extends StatefulWidget {
     required this.onNewContact,
   });
 
-  final ValueChanged<ContactModel> onNewContact;
+  final ValueChanged<ContactModelSql> onNewContact;
 
   @override
   State<AddContactScreen> createState() => _AddContactScreenState();
@@ -41,7 +41,7 @@ class _AddContactScreenState extends State<AddContactScreen> {
               //991234567
               if (name.isNotEmpty && surname.isNotEmpty && phone.length == 9) {
                 widget.onNewContact
-                    .call(ContactModel(contactPhone: phone, contactName: name));
+                    .call(ContactModelSql(phone: "+998 $phone", name: name));
                 Navigator.pop(context);
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(

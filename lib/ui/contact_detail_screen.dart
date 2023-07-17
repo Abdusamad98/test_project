@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:test_project/models/contact_model.dart';
+import 'package:test_project/local_db/local_database.dart';
+import 'package:test_project/models/contact_model_sql.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactDetailScreen extends StatelessWidget {
-  const ContactDetailScreen({super.key, required this.contactModel});
+  const ContactDetailScreen(
+      {super.key,
+      required this.contactModel,
+      required this.contactDeleteListener});
 
-  final ContactModel contactModel;
+  final ContactModelSql contactModel;
+  final VoidCallback contactDeleteListener;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +66,11 @@ class ContactDetailScreen extends StatelessWidget {
                   child: Row(
                     children: [
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          await LocalDatabase.deleteContact(contactModel.id!);
+                          contactDeleteListener.call();
+                          Navigator.pop(context);
+                        },
                         icon: const Icon(
                           Icons.delete,
                           color: Colors.black,
@@ -81,7 +90,7 @@ class ContactDetailScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Text(
-              contactModel.contactName,
+              contactModel.name,
               style: const TextStyle(
                 color: Colors.black,
                 fontSize: 22,
@@ -92,7 +101,7 @@ class ContactDetailScreen extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  contactModel.contactPhone,
+                  contactModel.phone,
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 16,
@@ -102,8 +111,7 @@ class ContactDetailScreen extends StatelessWidget {
                 const Expanded(child: SizedBox()),
                 GestureDetector(
                   onTap: () async {
-                    await launchUrl(
-                        Uri.parse("tel:${contactModel.contactPhone}"));
+                    await launchUrl(Uri.parse("tel:${contactModel.phone}"));
                   },
                   child: Container(
                     height: 40,

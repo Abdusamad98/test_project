@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   url_launcher: ^6.1.12
   flutter_svg: ^2.0.7
+  sqflite: ^2.2.8+4
 
 
 dev_dependencies:
