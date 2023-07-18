@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:test_project/model/contact_model.dart';
+import 'package:test_project/local/local_database.dart';
+import 'package:test_project/model/contact_model_sql.dart';
 
 class ContactDetailScreen extends StatelessWidget {
-  const ContactDetailScreen({super.key, required this.contactModel});
+  const ContactDetailScreen(
+      {super.key, required this.contactModel, required this.deleteListener});
 
-  final ContactModel contactModel;
+  final ContactModelSql contactModel;
+  final VoidCallback deleteListener;
 
   @override
   Widget build(BuildContext context) {
@@ -57,12 +60,18 @@ class ContactDetailScreen extends StatelessWidget {
                   Icons.account_circle,
                   size: 100,
                 ),
-                IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
+                IconButton(
+                    onPressed: () async {
+                      await LocalDatabase.deleteContact(contactModel.id!);
+                      deleteListener.call();
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(Icons.delete)),
                 IconButton(onPressed: () {}, icon: Icon(Icons.edit))
               ],
             ),
             const SizedBox(height: 20),
-            Text("${contactModel.contactName} ${contactModel.contactSurname}")
+            Text(contactModel.name)
           ],
         ),
       ),

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:test_project/model/contact_model.dart';
+import 'package:test_project/model/contact_model_sql.dart';
 
 class ContactAddScreen extends StatefulWidget {
   const ContactAddScreen({super.key, required this.onNewContact});
 
-  final ValueChanged<ContactModel> onNewContact;
+  final ValueChanged<ContactModelSql> onNewContact;
 
   @override
   State<ContactAddScreen> createState() => _ContactAddScreenState();
@@ -41,10 +42,9 @@ class _ContactAddScreenState extends State<ContactAddScreen> {
               String phone = phoneController.text;
 //991234567
               if (name.isNotEmpty && surname.isNotEmpty && phone.length == 9) {
-                ContactModel newContact = ContactModel(
-                  contactPhone: "+998$phone",
-                  contactName: name,
-                  contactSurname: surname,
+                ContactModelSql newContact = ContactModelSql(
+                  phone: "+998$phone",
+                  name: "$name $surname",
                 );
 
                 widget.onNewContact.call(newContact);

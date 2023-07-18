@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:test_project/local/local_database.dart';
 import 'package:test_project/model/contact_model.dart';
+import 'package:test_project/model/contact_model_sql.dart';
 import 'package:test_project/ui/contact_add_screen.dart';
 import 'package:test_project/ui/contact_detail_screen.dart';
 
@@ -11,13 +13,19 @@ class ContactsScreen extends StatefulWidget {
 }
 
 class _ContactsScreenState extends State<ContactsScreen> {
-  List<ContactModel> contacts = [
-    ContactModel(
-      contactName: "Abdulloh",
-      contactPhone: "+998991234567",
-      contactSurname: "Falonchiyev",
-    ),
-  ];
+  List<ContactModelSql> contacts = [];
+
+  _syncContacts() async {
+    contacts = await LocalDatabase.getAllContacts();
+    setState(() {});
+  }
+
+
+  @override
+  void initState() {
+      _syncContacts();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,13 +66,16 @@ class _ContactsScreenState extends State<ContactsScreen> {
                     builder: (context) {
                       return ContactDetailScreen(
                         contactModel: contacts[i],
+                        deleteListener: (){
+                          _syncContacts();
+                        },
                       );
                     },
                   ),
                 );
               },
-              title: Text(contacts[i].contactName),
-              subtitle: Text(contacts[i].contactPhone),
+              title: Text(contacts[i].name),
+              subtitle: Text(contacts[i].phone),
               trailing: IconButton(
                 onPressed: () {},
                 icon: const Icon(
@@ -88,10 +99,9 @@ class _ContactsScreenState extends State<ContactsScreen> {
             MaterialPageRoute(
               builder: (context) {
                 return ContactAddScreen(
-                  onNewContact: (newContact) {
-                    setState(() {
-                      contacts.add(newContact);
-                    });
+                  onNewContact: (newContact) async{
+                    await LocalDatabase.insertContact(newContact);
+                    _syncContacts();
                   },
                 );
               },
