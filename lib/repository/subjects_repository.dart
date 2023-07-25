@@ -1,12 +1,13 @@
 import 'package:test_project/models/question_level.dart';
 import 'package:test_project/models/question_model.dart';
 import 'package:test_project/models/subject_model.dart';
+import 'package:test_project/utils/colors.dart';
 
 class SubjectsRepository {
   static List<SubjectModel> allSubjects = [
     SubjectModel(
       iconPath: "assets/images/math.png",
-      colorInString: "0xFF000000",
+      color: AppColors.C_27AE60,
       questions: [
         QuestionModel(
           questionText: "2+2",
@@ -31,7 +32,7 @@ class SubjectsRepository {
     ),
     SubjectModel(
       iconPath: "assets/images/english.png",
-      colorInString: "0xFFFFFFFF",
+      color: AppColors.C_F2954D,
       questions: [
         QuestionModel(
           questionText: "How many letters in english Alphabet?",
@@ -53,6 +54,22 @@ class SubjectsRepository {
         )
       ],
       subjectName: "English",
+    ),
+    SubjectModel(
+      iconPath: "assets/images/physics.png",
+      color: AppColors.C_40D7DD,
+      questions: [
+        QuestionModel(
+          questionText: "What is gravitation?",
+          answer1: "gravitation is sdd",
+          answer2: "gravitation ",
+          answer3: "gravitation rfgbff",
+          answer4: "gravitationfgf",
+          level: QuestionLevel.easy,
+          trueAnswer: "gravitationfgf",
+        ),
+      ],
+      subjectName: "Physics",
     ),
   ];
 }
