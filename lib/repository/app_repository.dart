@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:test_project/models/question_level.dart';
 import 'package:test_project/models/question_model.dart';
 import 'package:test_project/models/subject_model.dart';
@@ -6,7 +7,7 @@ class AppRepository {
   static List<SubjectModel> subjects = [
     SubjectModel(
       iconPath: "assets/images/math.png",
-      colorInString: "0xFF000000",
+      color: Colors.teal,
       questions: [
         QuestionModel(
           questionText: "2+2",
@@ -29,5 +30,33 @@ class AppRepository {
       ],
       subjectName: "Math",
     ),
+    SubjectModel(
+      iconPath: "assets/images/english.png",
+      color: Colors.red,
+      questions: [
+        QuestionModel(
+          questionText: "I am ... student.",
+          answer1: "an",
+          answer2: "a",
+          answer3: "the",
+          answer4: "am",
+          level: QuestionLevel.easy,
+          trueAnswer: "a",
+        ),
+        QuestionModel(
+          questionText: "I am ... student.",
+          answer1: "an",
+          answer2: "a",
+          answer3: "the",
+          answer4: "am",
+          level: QuestionLevel.easy,
+          trueAnswer: "a",
+        )
+      ],
+      subjectName: "English",
+    ),
   ];
+
+
+
 }
