@@ -10,7 +10,7 @@ class AppRepository {
       color: Colors.teal,
       questions: [
         QuestionModel(
-          questionText: "2+2",
+          questionText: "2+2 = ?",
           answer1: "1",
           answer2: "2",
           answer3: "3",
