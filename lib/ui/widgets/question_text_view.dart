@@ -13,7 +13,7 @@ class QuestionTextView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Question ${currentQuestionIndex+1}: ",
+          "Q/ ${currentQuestionIndex+1}. ",
           style: const TextStyle(
             color: AppColors.C_F2954D,
             fontWeight: FontWeight.w500,

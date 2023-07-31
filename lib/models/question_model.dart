@@ -7,7 +7,7 @@ class QuestionModel {
   final String answer2;
   final String answer3;
   final String answer4;
-  final String trueAnswer;
+  final int trueAnswer;
   final QuestionLevel level;
 
   QuestionModel({
