@@ -5,14 +5,13 @@ import 'package:test_project/ui/intrdoction_screen.dart';
 main() {
   runApp(
     MaterialApp(
-      home: IntroductionScreen(),
+      home: const IntroductionScreen(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          backgroundColor: Color(0XFF273032),
-        ),
-        scaffoldBackgroundColor: Color(0XFF273032)
-      ),
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Color(0XFF273032),
+          ),
+          scaffoldBackgroundColor: const Color(0XFF273032)),
     ),
   );
 }
