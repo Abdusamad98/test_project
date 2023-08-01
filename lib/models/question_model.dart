@@ -9,7 +9,7 @@ class QuestionModel {
     required this.answer1,
     required this.questionText,
     this.id,
-    this.questionLevel = QuestionLevel.easy,
+    this.level = QuestionLevel.easy,
   });
 
   String? id;
@@ -18,6 +18,6 @@ class QuestionModel {
   final String answer2;
   final String answer3;
   final String answer4;
-  final String trueAnswer;
-  final QuestionLevel questionLevel;
+  final int trueAnswer;
+  final QuestionLevel level;
 }

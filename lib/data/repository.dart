@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_project/models/question_level.dart';
 import 'package:test_project/models/question_model.dart';
 import 'package:test_project/models/subject_model.dart';
 
@@ -10,15 +11,43 @@ class AppRepository {
       color: Colors.teal,
       questions: [
         QuestionModel(
-          trueAnswer: "369",
-          answer4: "234",
-          answer3: "369",
-          answer2: "344",
-          answer1: "678",
-          questionText: "123*3 = ?",
+          level: QuestionLevel.easy,
+          trueAnswer: 1,
+          questionText: "5 x 20 = ?",
+          answer4: "70",
+          answer3: "80",
+          answer2: "90",
+          answer1: "100",
         ),
         QuestionModel(
-          trueAnswer: "Correct answer",
+          level: QuestionLevel.easy,
+          trueAnswer: 3,
+          questionText: "100 / 5 = ?",
+          answer4: "30",
+          answer3: "20",
+          answer2: "15",
+          answer1: "12",
+        ),
+        QuestionModel(
+          level: QuestionLevel.easy,
+          trueAnswer: 4,
+          questionText: "100 / 20 = ?",
+          answer4: "5",
+          answer3: "10",
+          answer2: "8",
+          answer1: "7",
+        ),
+        QuestionModel(
+          level: QuestionLevel.easy,
+          trueAnswer: 3,
+          questionText: "6 x 2 = ?",
+          answer4: "13",
+          answer3: "12",
+          answer2: "10",
+          answer1: "7",
+        ),
+        QuestionModel(
+          trueAnswer: 2,
           answer4: "bnsdfbd ffsg",
           answer3: "gffdgd fgddg ",
           answer2: "Correct answer",
@@ -33,7 +62,7 @@ class AppRepository {
       color: Colors.indigo,
       questions: [
         QuestionModel(
-          trueAnswer: "a",
+          trueAnswer: 4,
           answer4: "a",
           answer3: "am",
           answer2: "an",
