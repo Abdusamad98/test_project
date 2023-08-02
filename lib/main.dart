@@ -11,7 +11,8 @@ void main() {
       scaffoldBackgroundColor: AppColors.C_273032,
       appBarTheme: const AppBarTheme(
         systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: AppColors.C_273032
+          statusBarColor: AppColors.C_273032,
+          statusBarBrightness: Brightness.dark,
         ),
         backgroundColor: AppColors.C_273032,
         elevation: 0,

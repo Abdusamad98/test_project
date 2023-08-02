@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:test_project/models/question_model.dart';
 import 'package:test_project/models/subject_model.dart';
@@ -168,7 +170,9 @@ class _QuizScreenState extends State<QuizScreen> {
                 ),
               )
             ],
-          )
+          ),
+          Platform.isIOS ? SizedBox(height: 50) : SizedBox()
+
         ],
       ),
     );
