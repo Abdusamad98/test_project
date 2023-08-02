@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:test_project/ui/subjects_screen.dart';
 
 class IntroductionScreen extends StatefulWidget {
@@ -31,17 +32,21 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          "Quiz App with 107",
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 32,
-            color: Colors.white,
-          ),
-        ),
-      ),
-    );
+    return Scaffold(
+        appBar: AppBar(),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // const Text(
+            //   "Quiz App With 107",
+            //   style: TextStyle(
+            //     fontSize: 32,
+            //     color: Colors.white,
+            //     fontWeight: FontWeight.w600,
+            //   ),
+            // ),
+            Lottie.asset('assets/lotties/introduction.json'),
+          ],
+        ));
   }
 }

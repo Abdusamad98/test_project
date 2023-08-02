@@ -49,12 +49,14 @@ class _QuizScreenState extends State<QuizScreen> {
                         color: Colors.orange,
                       ),
                     ),
-                    Text(
-                      questions[currentQuestionIndex].questionText,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 20,
-                        color: Colors.white,
+                    Expanded(
+                      child: Text(
+                        questions[currentQuestionIndex].questionText,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 20,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ],
@@ -105,15 +107,14 @@ class _QuizScreenState extends State<QuizScreen> {
               SizedBox(
                 width: 120,
                 child: TextButton(
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("NEXT"),
-                      SizedBox(width: 10),
-                      Icon(
-                        Icons.arrow_forward,
-                        //color: Colors.green,
-                      ),
+                      (currentQuestionIndex == questions.length - 1)
+                          ? const Text("RESULTS")
+                          : const Text("NEXT"),
+                      const SizedBox(width: 10),
+                      const Icon(Icons.arrow_forward),
                     ],
                   ),
                   onPressed: () {

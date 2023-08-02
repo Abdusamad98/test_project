@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:test_project/models/subject_model.dart';
 
 class ResultsScreen extends StatelessWidget {
@@ -22,20 +23,34 @@ class ResultsScreen extends StatelessWidget {
       return trueCount;
     }
 
+    double percentage =
+        (100 * calculateTrueAnswersCount()) / selectedAnswers.length;
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Results from ${subject.subjectName}"),
-      ),
-      body: Center(
-        child: Text(
-            "Results: ${calculateTrueAnswersCount()} / ${subject.questions.length} ",
-            style: const TextStyle(
-              fontWeight: FontWeight.w700,
-              color: Colors.white,
-              fontSize: 32
-            ),
+        appBar: AppBar(
+          title: Text("Results from ${subject.subjectName}"),
         ),
-      ),
-    );
+        body: Column(
+          children: [
+            if (percentage >= 0 && percentage <= 56)
+              Lottie.asset("assets/lotties/bad_score.json"),
+
+            if (percentage > 56 && percentage <= 80)
+              Lottie.asset("assets/lotties/average_score.json"),
+
+            if (percentage > 80)
+              Lottie.asset("assets/lotties/good_score.json"),
+
+            Center(
+              child: Text(
+                "Results: ${calculateTrueAnswersCount()} / ${subject.questions.length} ",
+                style: const TextStyle(
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                    fontSize: 32),
+              ),
+            ),
+          ],
+        ));
   }
 }
