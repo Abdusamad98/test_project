@@ -14,7 +14,7 @@ class AppRepository {
           answer3: "360",
           answer4: "240",
           questionText: "120 x 3 = ?",
-          trueAnswer: "360",
+          trueAnswer: 3,
           questionLevel: QuestionLevel.medium,
         ),
         QuestionModel(
@@ -23,7 +23,7 @@ class AppRepository {
           answer3: "360",
           answer4: "240",
           questionText: "100 x 3 = ?",
-          trueAnswer: "300",
+          trueAnswer: 2,
           questionLevel: QuestionLevel.easy,
         ),
         QuestionModel(
@@ -32,7 +32,7 @@ class AppRepository {
           answer3: "40",
           answer4: "50",
           questionText: "100 / 5 = ?",
-          trueAnswer: "20",
+          trueAnswer: 1,
           questionLevel: QuestionLevel.medium,
         ),
       ],
@@ -48,7 +48,7 @@ class AppRepository {
           answer3: "am",
           answer4: "are",
           questionText: "Who ... you ? ",
-          trueAnswer: "are",
+          trueAnswer: 4,
           questionLevel: QuestionLevel.medium,
         ),
         QuestionModel(
@@ -57,7 +57,7 @@ class AppRepository {
           answer3: "are",
           answer4: "am",
           questionText: "I am ... student",
-          trueAnswer: "a",
+          trueAnswer:2,
           questionLevel: QuestionLevel.easy,
         )
       ],
