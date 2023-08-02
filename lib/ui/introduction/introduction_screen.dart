@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:test_project/ui/subjects/subjects_screen.dart';
 import 'package:test_project/utils/colors.dart';
 
@@ -11,12 +13,17 @@ class IntroductionScreen extends StatefulWidget {
 
 class _IntroductionScreenState extends State<IntroductionScreen> {
   _init() async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 3));
 
     if (context.mounted) {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-        return SubjectsScreen();
-      }));
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return SubjectsScreen();
+          },
+        ),
+      );
     }
   }
 
@@ -28,20 +35,26 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: AppColors.C_273032,
-      body: Padding(
-        padding: EdgeInsets.all(24),
-        child: Center(
-          child: Text(
-            "Welcome to Test App with 105",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 32,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(24),
+            child: Center(
+              child: Text(
+                "Welcome to Test App with 105",
+                textAlign: TextAlign.center,
+                style: GoogleFonts.oswald(
+                  color: Colors.white,
+                  fontSize: 32,
+                ),
+              ),
             ),
           ),
-        ),
+          Lottie.asset("assets/lotties/introduction.json")
+        ],
       ),
     );
   }
