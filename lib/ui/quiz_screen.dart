@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_project/models/question_model.dart';
 import 'package:test_project/models/subject_model.dart';
+import 'package:test_project/ui/results_screen.dart';
 import 'package:test_project/ui/widgets/answer_button.dart';
 
 class QuizScreen extends StatefulWidget {
@@ -109,11 +110,46 @@ class _QuizScreenState extends State<QuizScreen> {
           ),
           TextButton(
             onPressed: () {
+              if (selectedQuestionOrder == -1) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    duration: Duration(milliseconds: 500),
+                    behavior: SnackBarBehavior.floating,
+                    backgroundColor: Colors.red,
+                    margin: EdgeInsets.symmetric(
+                      vertical: 100,
+                      horizontal: 20,
+                    ),
+                    content: Text(
+                      "Select answer !!!",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                );
+                return;
+              }
+
               if (currentQuestionIndex < questions.length - 1) {
                 currentQuestionIndex++;
                 selectedQuestionOrder = -1;
+                setState(() {});
+              } else {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return ResultsScreen(
+                        questions: questions,
+                        selectedAnswers: selectedAnswers,
+                      );
+                    },
+                  ),
+                );
               }
-              setState(() {});
 
               print("CURRENT ANSWERS LIST: $selectedAnswers");
             },

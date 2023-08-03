@@ -11,7 +11,7 @@ class AppRepository {
       questions: [
         QuestionModel(
           level: QuestionLevel.easy,
-          trueAnswer: "100",
+          trueAnswer: 1,
           questionText: "5 x 20 = ?",
           answer4: "70",
           answer3: "80",
@@ -20,7 +20,7 @@ class AppRepository {
         ),
         QuestionModel(
           level: QuestionLevel.easy,
-          trueAnswer: "20",
+          trueAnswer: 3,
           questionText: "100 / 5 = ?",
           answer4: "30",
           answer3: "20",
@@ -29,7 +29,7 @@ class AppRepository {
         ),
         QuestionModel(
           level: QuestionLevel.easy,
-          trueAnswer: "5",
+          trueAnswer: 4,
           questionText: "100 / 20 = ?",
           answer4: "5",
           answer3: "10",
@@ -38,7 +38,7 @@ class AppRepository {
         ),
         QuestionModel(
           level: QuestionLevel.easy,
-          trueAnswer: "12",
+          trueAnswer: 3,
           questionText: "6 x 2 = ?",
           answer4: "13",
           answer3: "12",
@@ -47,7 +47,7 @@ class AppRepository {
         ),
         QuestionModel(
           level: QuestionLevel.easy,
-          trueAnswer: "30",
+          trueAnswer: 4,
           questionText: "3 x 10 = ?",
           answer4: "30",
           answer3: "13",
@@ -63,7 +63,7 @@ class AppRepository {
       questions: [
         QuestionModel(
           level: QuestionLevel.easy,
-          trueAnswer: "a",
+          trueAnswer: 2,
           questionText: "I am ... student",
           answer4: "an",
           answer3: "the",
