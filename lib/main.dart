@@ -11,11 +11,9 @@ void main() {
       theme: ThemeData(
         primaryColor: AppColors.C_012a30,
         scaffoldBackgroundColor: AppColors.C_012a30,
-        appBarTheme: AppBarTheme(
-          color: AppColors.C_012a30,
-          backgroundColor: AppColors.C_012a30,
-          // elevation: 0,
-        ),
+        appBarTheme: const AppBarTheme(backgroundColor: AppColors.C_012a30
+            // elevation: 0,
+            ),
       ),
     ),
   );
