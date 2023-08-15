@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_project/ui/widgets/global_button.dart';
 import 'package:test_project/utils/colors.dart';
 import 'package:test_project/utils/contents.dart';
 import 'package:test_project/utils/images.dart';
@@ -16,16 +17,15 @@ class _AboutScreenState extends State<AboutScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("About PDP University"),
+        title: const Text("About PDP University"),
       ),
       body: ListView(
         children: [
           Image.asset(AppImages.image1),
-           Container(
-             decoration: BoxDecoration(
-               borderRadius: BorderRadius.circular(12),
-               color:AppColors.white
-             ),
+          Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: AppColors.white),
             padding: const EdgeInsets.all(16),
             margin: const EdgeInsets.all(16),
             child: const Text(
@@ -33,21 +33,11 @@ class _AboutScreenState extends State<AboutScreen> {
               style: TextStyle(color: AppColors.black, fontSize: 16),
             ),
           ),
-          Container(
-            height: 40,
-            margin: const EdgeInsets.all(16),
-            width: double.infinity,
-            child: TextButton(
-              style:
-                  TextButton.styleFrom(backgroundColor: AppColors.pdpSecondary),
-              onPressed: () async {
-                await launchUrl(Uri.parse(AppContents.websiteLink));
-              },
-              child: const Text(
-                "GO TO WEBSITE",
-                style: TextStyle(color: AppColors.white),
-              ),
-            ),
+          GlobalButton(
+            onTap: () async {
+              await launchUrl(Uri.parse(AppContents.websiteLink));
+            },
+            text: "GO TO WEBSITE",
           )
         ],
       ),

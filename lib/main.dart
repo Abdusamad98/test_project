@@ -8,9 +8,7 @@ void main() {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         scaffoldBackgroundColor: AppColors.pdpMain,
-        appBarTheme: AppBarTheme(
-          backgroundColor: AppColors.pdpMain,
-        ),
+        appBarTheme: AppBarTheme(backgroundColor: AppColors.pdpMain),
       ),
       home: SplashScreen(),
     ),
