@@ -31,4 +31,5 @@ As a result of advanced academic education and involvement in real projects in t
   ''';
 
   static const pdpWebsite = "https://university.pdp.uz/uz";
+  static const pdpCourses = "https://online.pdp.uz/";
 }
