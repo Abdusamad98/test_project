@@ -9,9 +9,9 @@ void main() {
       home: SplashScreen(),
       themeMode: ThemeMode.light,
       theme: ThemeData(
-        primaryColor: AppColors.C_012a30,
-        scaffoldBackgroundColor: AppColors.C_012a30,
-        appBarTheme: const AppBarTheme(backgroundColor: AppColors.C_012a30
+        primaryColor: AppColors.pdpMain,
+        scaffoldBackgroundColor: AppColors.pdpMain,
+        appBarTheme: const AppBarTheme(backgroundColor: AppColors.pdpMain
             // elevation: 0,
             ),
       ),

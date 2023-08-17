@@ -37,8 +37,15 @@ class _AboutScreenState extends State<AboutScreen> {
                     width: double.infinity,
                     height: 40,
                     child: TextButton(
-                      style: TextButton.styleFrom(backgroundColor: AppColors.white),
-                      child: const Text("GO TO WEBSITE"),
+                      style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50.0),
+                          ),
+                          backgroundColor: AppColors.pdpSecondary),
+                      child: const Text(
+                        "GO TO WEBSITE",
+                        style: TextStyle(color: AppColors.white),
+                      ),
                       onPressed: () async {
                         launchUrl(Uri.parse("https://university.pdp.uz/uz"));
                       },

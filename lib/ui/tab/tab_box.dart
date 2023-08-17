@@ -31,7 +31,7 @@ class _TabBoxState extends State<TabBox> {
     return Scaffold(
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: AppColors.C_012a30,
+        selectedItemColor: AppColors.pdpMain,
         currentIndex: currentIndex,
         onTap: (index){
           setState(() {
