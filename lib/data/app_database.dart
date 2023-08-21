@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_project/models/course_model.dart';
+import 'package:test_project/models/event_model.dart';
+import 'package:test_project/utils/images.dart';
 
 class AppDatabase {
   static List<CourseModel> courses = [
@@ -75,5 +77,50 @@ class AppDatabase {
       requiredKnowledge: "Basic computer knowledge,\nEnglish: Intermediate",
       color: Colors.green,
     ),
+  ];
+
+  static List<EventModel> events = [
+    EventModel(
+      title: "Orientation Week",
+      description: '''
+⚡️ PDP University Orientation week | Start
+
+🟢// PDP University’da 2-Oktabr kuni orientatsiya haftaligiga start berildi.
+
+✌️ Hafta davomida sizni nimalar kutmoqda:
+
+✅ Taqdimotlar
+✅ Networking
+✅ Jamoaviy ishlash
+✅ Skill’larni taqdim etish
+✅ Loyihalar bilan tanishuv
+✅ va siz uchun yana ko’plab foydali ma’lumotlar
+
+😎 Siz ham PDP talabasi bo’lishni istaysizmi? U holda izohlarda + belgisini qoldiring!
+   🌐 PDP University — raqamli taʼlim, raqamli kelajak yaratish uchun!
+      ''',
+      images: [
+        AppImages.image3,
+        AppImages.image4,
+      ],
+      dateOfEvent: "02.10.2023",
+    ),
+    EventModel(
+      title: "Talabalikga marhamat!",
+      description: '''
+🎓 HAM TALABALIKNI, HAM STIPENDIYANI QO'LGA KIRITING!
+Iyul oyi bilan birga vaucherlar ham o'z nihoyasiga yetdi. Ammo avgust oyining ham sizga atalgan imtiyozlari mavjud. Qanday deysizmi?
+🔥 PDP University bo'lajak talabalarni rag'batlantirish maqsadida navbatdagi imtiyozlarni yo'lga qo'ydi. 
+Ushbu imkoniyatni qo'lga kiritish faqatgina sizga bog'liq. Ammo xohishning o'zi yetarli emas, harakat qiling va yuqori natijalarga erishing.
+📲 Hoziroq ro'yxatdan o'tish uchun biodagi havolaga bosing.
+P/s: Stipendiyalarimiz ham Vaucherlarimiz kabi tugatiladi, shuning uchun vaqtida imkoniyatdan foydalanib qoling.
+📞 | +998787777747
+ ''',
+      images: [
+        AppImages.image1,
+        AppImages.image2,
+      ],
+      dateOfEvent: "10.10.2023",
+    )
   ];
 }

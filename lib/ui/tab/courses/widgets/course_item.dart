@@ -34,6 +34,8 @@ class CourseItem extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Text(courseModel.courseName,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 3,
                 style: const TextStyle(color: AppColors.white, fontSize: 18)),
             const Spacer(),
             Text(courseModel.durationOfCourse,

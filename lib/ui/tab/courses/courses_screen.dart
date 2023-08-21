@@ -24,7 +24,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
         crossAxisSpacing: 16,
         mainAxisSpacing: 16,
         crossAxisCount: 2,
-        childAspectRatio: .75,
+        childAspectRatio: .65,
         children: <Widget>[
           ...List.generate(
             AppDatabase.courses.length,
