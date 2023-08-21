@@ -11,6 +11,7 @@ class CourseDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: Text(courseModel.courseName),
@@ -23,17 +24,17 @@ class CourseDetailScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
+                Text(
                   "Requirements",
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: width > 350 ? 18 : 12,
                     color: AppColors.pdpSecondary,
                   ),
                 ),
                 Text(
                   courseModel.requiredKnowledge,
-                  style: const TextStyle(
-                    fontSize: 18,
+                  style: TextStyle(
+                    fontSize: width > 350 ? 18 : 12,
                     color: AppColors.white,
                   ),
                 )

@@ -13,6 +13,7 @@ class CoursesScreen extends StatefulWidget {
 class _CoursesScreenState extends State<CoursesScreen> {
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Available Courses "),
@@ -23,7 +24,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
         crossAxisSpacing: 16,
         mainAxisSpacing: 16,
         crossAxisCount: 2,
-        childAspectRatio: 0.75,
+        childAspectRatio: 0.65,
         children: <Widget>[
           for (int index = 0; index < courses.length; index++)
             GestureDetector(
@@ -55,8 +56,9 @@ class _CoursesScreenState extends State<CoursesScreen> {
                     const SizedBox(height: 12),
                     Text(
                       courses[index].courseName,
-                      style: const TextStyle(
-                        fontSize: 16,
+                      maxLines: 3,
+                      style:  TextStyle(
+                        fontSize: width>350?16:12,
                         color: AppColors.white,
                       ),
                     ),
