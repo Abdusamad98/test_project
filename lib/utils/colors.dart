@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class AppColors {
   static const Color pdpMain = Color(0xFF012a30);

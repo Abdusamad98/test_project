@@ -19,9 +19,9 @@ class _TabBoxState extends State<TabBox> {
   @override
   void initState() {
     screens = [
-      AboutScreen(),
-      CoursesScreen(),
-      EventsScreen(),
+      const AboutScreen(),
+      const CoursesScreen(),
+      const EventsScreen(),
     ];
     super.initState();
   }
@@ -33,14 +33,14 @@ class _TabBoxState extends State<TabBox> {
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: AppColors.pdpMain,
         currentIndex: currentIndex,
-        onTap: (index){
+        onTap: (index) {
           setState(() {
             setState(() {
               currentIndex = index;
             });
           });
         },
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.info), label: "About"),
           BottomNavigationBarItem(icon: Icon(Icons.subject), label: "Courses"),
           BottomNavigationBarItem(icon: Icon(Icons.event), label: "Events"),

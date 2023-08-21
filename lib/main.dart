@@ -6,7 +6,7 @@ void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: const SplashScreen(),
       themeMode: ThemeMode.light,
       theme: ThemeData(
         primaryColor: AppColors.pdpMain,

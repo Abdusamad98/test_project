@@ -23,7 +23,7 @@ class CourseDetailScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
-                  "Requiremnts: ",
+                  "Requirements: ",
                   style: TextStyle(
                     color: AppColors.pdpSecondary,
                     fontSize: 18,

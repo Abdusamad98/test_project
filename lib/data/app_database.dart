@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_project/models/course_model.dart';
+import 'package:test_project/models/event_model.dart';
 
 class AppDatabase {
   static List<CourseModel> courses = [
@@ -39,5 +40,33 @@ class AppDatabase {
       requiredKnowledge: "Basic computer knowledge,\nEnglish: Intermediate",
       color: Colors.deepOrangeAccent,
     ),
+  ];
+
+  static List<EventModel> events = [
+    EventModel(
+      title: "Orientation Week",
+      description: '''
+⚡️ PDP University Orientation week | Start
+
+🟢// PDP University’da 2-Oktabr kuni orientatsiya haftaligiga start berildi.
+
+✌️ Hafta davomida sizni nimalar kutmoqda:
+
+✅ Taqdimotlar
+✅ Networking
+✅ Jamoaviy ishlash
+✅ Skill’larni taqdim etish
+✅ Loyihalar bilan tanishuv
+✅ va siz uchun yana ko’plab foydali ma’lumotlar
+
+😎 Siz ham PDP talabasi bo’lishni istaysizmi? U holda izohlarda + belgisini qoldiring!
+   🌐 PDP University — raqamli taʼlim, raqamli kelajak yaratish uchun!
+      ''',
+      images: [
+        "assets/images/image_2.jpeg",
+        "assets/images/image_3.jpeg",
+      ],
+      dateOfEvent: "01.10.2023",
+    )
   ];
 }
