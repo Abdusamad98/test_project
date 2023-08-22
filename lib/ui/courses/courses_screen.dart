@@ -24,8 +24,8 @@ class _CoursesScreenState extends State<CoursesScreen> {
         padding: const EdgeInsets.all(16),
         crossAxisSpacing: 16,
         mainAxisSpacing: 16,
-        crossAxisCount: 2,
-        childAspectRatio: 0.65,
+        crossAxisCount: width > 500 ? 3 : 2,
+        childAspectRatio: 0.6,
         children: <Widget>[
           for (int i = 0; i < courses.length; i++)
             Container(
@@ -61,7 +61,6 @@ class _CoursesScreenState extends State<CoursesScreen> {
                       fontSize: 14,
                     ),
                   ),
-
                   const Spacer(),
                   Text(
                     courses[i].durationOfCourse,
@@ -70,7 +69,6 @@ class _CoursesScreenState extends State<CoursesScreen> {
                       fontSize: 12,
                     ),
                   ),
-
                 ],
               ),
             ),

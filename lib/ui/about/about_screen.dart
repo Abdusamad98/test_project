@@ -15,6 +15,7 @@ class AboutScreen extends StatefulWidget {
 class _AboutScreenState extends State<AboutScreen> {
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: ListView(
         children: [
@@ -27,13 +28,13 @@ class _AboutScreenState extends State<AboutScreen> {
               ],
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.all(16),
+           Padding(
+            padding: const EdgeInsets.all(16),
             child: Text(
               AppContents.pdpInfo,
               style: TextStyle(
                 color: AppColors.white,
-                fontSize: 16,
+                fontSize: width>500?22:16,
               ),
             ),
           ),
