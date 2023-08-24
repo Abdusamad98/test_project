@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:test_project/ui/remote/remote_subjects_screen.dart';
 import 'package:test_project/ui/subjects_screen.dart';
 
 class IntroductionScreen extends StatefulWidget {
@@ -18,7 +19,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
         context,
         MaterialPageRoute(
           builder: (context) {
-            return SubjectsScreen();
+            return RemoteSubjectsScreen();
           },
         ),
       );

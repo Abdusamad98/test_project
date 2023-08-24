@@ -13,4 +13,15 @@ class SubjectModel {
   final String iconPath;
   final List<QuestionModel> questions;
   final Color color;
+
+
+
+
 }
+
+
+// "id": 1,
+// "name": "Math",
+// "iconPath": "example.com",
+// "color": "333"
+// },
