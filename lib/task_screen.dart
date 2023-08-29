@@ -20,41 +20,40 @@ class _TaskScreenState extends State<TaskScreen> {
           ),
           onPressed: () {},
         ),
+        elevation: 0,
+        backgroundColor: Colors.white,
         centerTitle: true,
         title: const Text(
           "Discount",
-          style: TextStyle(
-            color: Colors.blue,
-            fontWeight: FontWeight.w700,
-          ),
+          style: TextStyle(color: Colors.blue),
         ),
-        elevation: 0,
-        backgroundColor: Colors.white,
       ),
       body: Column(
         children: [
           Padding(
-            padding:const EdgeInsets.symmetric(horizontal: 24,vertical: 16),
+            padding: const EdgeInsets.symmetric(
+              vertical: 16,
+              horizontal: 24,
+            ),
             child: TextField(
               decoration: InputDecoration(
                 suffixIcon: IconButton(
                   icon: const Icon(
                     Icons.search,
                     color: Colors.black,
+                    size: 24,
                   ),
                   onPressed: () {},
                 ),
+                hintText: "Discount Search",
+                hintStyle: const TextStyle(fontSize: 12),
+                contentPadding: const EdgeInsets.all(12),
+                fillColor: Colors.white,
+                filled: true,
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5),
                   borderSide: const BorderSide(
-                    color: Color(0xFFBDBDBd),
-                    width: 2,
-                  ),
-                ),
-                disabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5),
-                  borderSide: const BorderSide(
-                    color: Color(0xFFBDBDBd),
+                    color: Colors.grey,
                     width: 2,
                   ),
                 ),
@@ -65,9 +64,6 @@ class _TaskScreenState extends State<TaskScreen> {
                     width: 2,
                   ),
                 ),
-                hintText: "Search Discount",
-                fillColor: Colors.white,
-                filled: true,
               ),
             ),
           )
