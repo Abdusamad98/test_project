@@ -29,9 +29,6 @@ class _ResultsScreenState extends State<ResultsScreen> {
         prefs.setInt(widget.subject.resultKey, currentResult);
         prefs.setInt(widget.subject.timeKey, widget.spentSeconds);
       }
-
-
-
     } else {
       prefs.setInt(widget.subject.resultKey, currentResult);
     }
