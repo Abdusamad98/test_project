@@ -141,7 +141,7 @@ class SecondTaskScreen extends StatelessWidget {
                         )
                       ],
                     ),
-                  )
+                  ),
               ],
             ),
           )
