@@ -19,11 +19,4 @@ void main() async {
       home: IntroductionScreen(),
     ),
   );
-
-  List<int> numbers = [
-    12,
-    33,
-    56,
-  ];
-  numbers.length;
 }

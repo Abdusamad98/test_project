@@ -8,23 +8,30 @@ import '../main.dart';
 
 class ResultsScreen extends StatefulWidget {
   const ResultsScreen(
-      {super.key, required this.subject, required this.selectedAnswers});
+      {super.key, required this.subject, required this.selectedAnswers, required this.spentSeconds});
 
   final SubjectModel subject;
   final Map<int, int> selectedAnswers;
+  final int spentSeconds;
 
   @override
   State<ResultsScreen> createState() => _ResultsScreenState();
 }
 
 class _ResultsScreenState extends State<ResultsScreen> {
+
   setResult() async {
     int currentResult = calculateTrueAnswersCount();
+
     int? subjectResult = prefs.getInt(widget.subject.resultKey);
     if (subjectResult != null) {
       if (subjectResult < currentResult) {
         prefs.setInt(widget.subject.resultKey, currentResult);
+        prefs.setInt(widget.subject.timeKey, widget.spentSeconds);
       }
+
+
+
     } else {
       prefs.setInt(widget.subject.resultKey, currentResult);
     }
@@ -48,8 +55,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double percentage =
-        (calculateTrueAnswersCount() * 100) / widget.subject.questions.length;
+    double percentage = (calculateTrueAnswersCount() * 100) / widget.subject.questions.length;
 
     return Scaffold(
       appBar: AppBar(

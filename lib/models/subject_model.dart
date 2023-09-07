@@ -7,6 +7,7 @@ class SubjectModel {
   final String iconPath;
   final Color color;
   final String resultKey;
+  final String timeKey;
   final List<QuestionModel> questions;
 
   SubjectModel({
@@ -15,5 +16,6 @@ class SubjectModel {
     required this.questions,
     required this.subjectName,
     required this.resultKey,
+    required this.timeKey,
   });
 }

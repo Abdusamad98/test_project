@@ -18,6 +18,8 @@ class QuizScreen extends StatefulWidget {
 
 class _QuizScreenState extends State<QuizScreen> {
   List<QuestionModel> questions = [];
+  int seconds = 0;
+  String timerText = "";
 
   int currentQuestionIndex = 0;
   int selectedAnswerOrder = -1;
@@ -27,13 +29,34 @@ class _QuizScreenState extends State<QuizScreen> {
   @override
   void initState() {
     questions = widget.subjectModel.questions;
+    startTimer();
     super.initState();
+  }
+
+  startTimer() async {
+    for (int i = 0; i < 1000000; i++) {
+      seconds++;
+      await Future.delayed(const Duration(seconds: 1));
+      setState(() {});
+      timerText = "${seconds ~/ 60}:${seconds % 60}";
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          Center(
+            child: Text(
+              timerText,
+              style: const TextStyle(
+                fontSize: 18
+              ),
+            ),
+          ),
+          const SizedBox(width: 12)
+        ],
         leading: IconButton(
           onPressed: () {
             Navigator.pushReplacement(
@@ -146,6 +169,7 @@ class _QuizScreenState extends State<QuizScreen> {
                         MaterialPageRoute(
                           builder: (context) {
                             return ResultsScreen(
+                              spentSeconds: seconds,
                               selectedAnswers: selectedAnswers,
                               subject: widget.subjectModel,
                             );

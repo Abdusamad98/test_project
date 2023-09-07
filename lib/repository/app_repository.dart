@@ -7,6 +7,7 @@ class AppRepository {
   static List<SubjectModel> subjects = [
     SubjectModel(
       resultKey: "math_result",
+      timeKey: "math_time",
       iconPath: "assets/images/math.png",
       color: Colors.teal,
       questions: [
@@ -60,6 +61,7 @@ class AppRepository {
     ),
     SubjectModel(
       resultKey: "english_result",
+      timeKey: "english_time",
       iconPath: "assets/images/english.png",
       color: Colors.red,
       questions: [
