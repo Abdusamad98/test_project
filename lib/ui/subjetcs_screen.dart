@@ -14,16 +14,14 @@ class _SubjectScreenState extends State<SubjectScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Subjects"),
-      ),
+      appBar: AppBar(title: const Text("Subjects")),
       body: ListView(
         children: [
           for (int index = 0; index < AppRepository.subjects.length; index++)
             SubjectItemView(
               subjectModel: AppRepository.subjects[index],
               onSubjectPressed: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (context) {

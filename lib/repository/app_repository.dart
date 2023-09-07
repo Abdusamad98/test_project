@@ -6,6 +6,7 @@ import 'package:test_project/models/subject_model.dart';
 class AppRepository {
   static List<SubjectModel> subjects = [
     SubjectModel(
+      resultKey: "math_result",
       iconPath: "assets/images/math.png",
       color: Colors.teal,
       questions: [
@@ -58,6 +59,7 @@ class AppRepository {
       subjectName: "Math",
     ),
     SubjectModel(
+      resultKey: "english_result",
       iconPath: "assets/images/english.png",
       color: Colors.red,
       questions: [

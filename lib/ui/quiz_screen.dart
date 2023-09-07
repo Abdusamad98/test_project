@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_project/models/question_model.dart';
 import 'package:test_project/models/subject_model.dart';
 import 'package:test_project/ui/results_screen.dart';
+import 'package:test_project/ui/subjetcs_screen.dart';
 import 'package:test_project/ui/widgets/answer_button.dart';
 import 'package:test_project/ui/widgets/question_text_view.dart';
 import 'package:test_project/utils/colors.dart';
@@ -33,6 +34,19 @@ class _QuizScreenState extends State<QuizScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return const SubjectScreen();
+                },
+              ),
+            );
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
         title: Text("Quiz from ${widget.subjectModel.subjectName}"),
       ),
       body: Column(
@@ -52,7 +66,8 @@ class _QuizScreenState extends State<QuizScreen> {
                   onTap: () {
                     setState(() {
                       selectedAnswerOrder = 1;
-                      selectedAnswers[currentQuestionIndex] = selectedAnswerOrder;
+                      selectedAnswers[currentQuestionIndex] =
+                          selectedAnswerOrder;
                     });
                   },
                 ),
@@ -62,7 +77,8 @@ class _QuizScreenState extends State<QuizScreen> {
                   onTap: () {
                     setState(() {
                       selectedAnswerOrder = 2;
-                      selectedAnswers[currentQuestionIndex] = selectedAnswerOrder;
+                      selectedAnswers[currentQuestionIndex] =
+                          selectedAnswerOrder;
                     });
                   },
                 ),
@@ -72,8 +88,8 @@ class _QuizScreenState extends State<QuizScreen> {
                   onTap: () {
                     setState(() {
                       selectedAnswerOrder = 3;
-                      selectedAnswers[currentQuestionIndex] = selectedAnswerOrder;
-
+                      selectedAnswers[currentQuestionIndex] =
+                          selectedAnswerOrder;
                     });
                   },
                 ),
@@ -83,7 +99,8 @@ class _QuizScreenState extends State<QuizScreen> {
                   onTap: () {
                     setState(() {
                       selectedAnswerOrder = 4;
-                      selectedAnswers[currentQuestionIndex] = selectedAnswerOrder;
+                      selectedAnswers[currentQuestionIndex] =
+                          selectedAnswerOrder;
                     });
                   },
                 ),
@@ -97,7 +114,6 @@ class _QuizScreenState extends State<QuizScreen> {
                 width: 120,
                 child: TextButton(
                   onPressed: () {
-
                     print("CURRENTLY SELECTED ANSWERS STATE: $selectedAnswers");
 
                     if (selectedAnswerOrder == -1) {
